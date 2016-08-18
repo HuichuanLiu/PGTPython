@@ -2,13 +2,13 @@ import scipy.io as sio
 from scipy.spatial import cKDTree as KDTree
 import numpy as np
 
-ldata = sio.loadmat("features.mat")
-ldata = ldata['features']
-ldata = ldata[0:200,:]
-udata = sio.loadmat("features.mat")
-udata = udata['features']
-udata = udata[201:-1,:]
-llist = [1,0]*100
+data = sio.loadmat("data_800.mat")
+data = data['s']
+data = data[0,0]
+udata = data['udata']
+llist = data['labels']
+ldata = data['ldata']
+
 
 
 def semiKNN(label_data,unlabel_data,label_list,k):
@@ -53,7 +53,7 @@ def semiKNN(label_data,unlabel_data,label_list,k):
 
 
 
-semiKNN(ldata,udata,llist,100)
+kdtree = semiKNN(ldata,udata,llist,100)
 
 a=1
 
